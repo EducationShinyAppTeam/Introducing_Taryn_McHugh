@@ -5,7 +5,7 @@ library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
 
-# Load additional dependencies and setup functions
+# Load additional dependencies and setup functions----
 # source("global.R")
 
 # Define UI for App ----
