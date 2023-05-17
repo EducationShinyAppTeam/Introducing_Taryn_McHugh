@@ -15,7 +15,7 @@ ui <- list(
     skin = "blue",
     ### Create the app header ----
     dashboardHeader(
-      title = "App Template", # You may use a shortened form of the title here
+      title = "Introducing Taryn McHugh", # You may use a shortened form of the title here
       titleWidth = 250,
       tags$li(class = "dropdown", actionLink("info", icon("info"))),
       tags$li(
@@ -35,12 +35,8 @@ ui <- list(
       sidebarMenu(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
-        menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Example", tabName = "example", icon = icon("book-open-reader")),
-        menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
-        menuItem("Challenge", tabName = "challenge", icon = icon("gears")),
-        menuItem("Game", tabName = "game", icon = icon("gamepad")),
-        menuItem("Wizard", tabName = "wizard", icon = icon("hat-wizard")),
+        menuItem("Background", tabName = "background", icon = icon("book")),
+        menuItem("Timeline", tabName = "timeline", icon = icon("wpexplorer")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -55,18 +51,13 @@ ui <- list(
         tabItem(
           tabName = "overview",
           withMathJax(),
-          h1("Sample Application for BOAST Apps"), # This should be the full name.
-          p("This is a sample Shiny application for BOAST. Remember, this page
-            will act like the front page (home page) of your app. Thus you will
-            want to have this page catch attention and describe (in general terms)
-            what the user can do in the rest of the app."),
+          h1("Introducion to Taryn McHugh"), # This should be the full name.
+          p("Use this application to get to  know more about Taryn McHugh!"),
           h2("Instructions"),
-          p("This information will change depending on what you want to do."),
           tags$ol(
-            tags$li("Review any prerequiste ideas using the Prerequistes tab."),
-            tags$li("Explore the Exploration Tab."),
-            tags$li("Challenge yourself."),
-            tags$li("Play the game to test how far you've come.")
+            tags$li("Read facts about me using the Background Tab"),
+            tags$li("See specific images that descirbe events that happened to me
+                    in the Timeline Tab")
           ),
           ##### Go Button--location will depend on your goals
           div(
@@ -96,67 +87,50 @@ ui <- list(
             citeApp(),
             br(),
             br(),
-            div(class = "updated", "Last Update: 11/8/2022 by NJH.")
+            div(class = "updated", "Last Update: 05/17/2023 by TM.")
           )
         ),
-        #### Set up the Prerequisites Page ----
+        #### Set up background page----
         tabItem(
-          tabName = "prerequisites",
+          tabName = "background",
           withMathJax(),
-          h2("Prerequisites"),
-          p("In order to get the most out of this app, please review the
-            following:"),
-          tags$ul(
-            tags$li("Pre-req 1--Technical/Conceptual Prerequisites are ideas that
-                    users need to have in order to engage with your app fully."),
-            tags$li("Pre-req 2--Contextual Prerequisites refer to any information
-                    about a context in your app that will enrich a user's
-                    understandings."),
-            tags$li("Pre-req 3"),
-            tags$li("Pre-req 4")
-          ),
-          p("Notice the use of an unordered list; users can move through the
-            list any way they wish."),
-          box(
-            title = strong("Null Hypothesis Significance Tests (NHSTs)"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = TRUE,
-            width = '100%',
-            "In the Confirmatory Data Analysis tradition, null hypothesis
-            significance tests serve as a critical tool to confirm that a
-            particular theoretical model describes our data and to make a
-            generalization from our sample to the broader population
-            (i.e., make an inference). The null hypothesis often reflects the
-            simpler of two models (e.g., 'no statistical difference',
-            'there is an additive difference of 1', etc.) that we will use to
-            build a sampling distribution for our chosen estimator. These
-            methods let us test whether our sample data are consistent with this
-            simple model (null hypothesis)."
-          ),
-          box(
-            title = strong(tags$em("p"), "-values"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = FALSE,
-            width = '100%',
-            "The probability that our selected estimator takes on a value at
-            least as extreme as what we observed given our null hypothesis. If
-            we were to carry out our study infinitely many times and the null
-            hypothesis accurately modeled what we're studying, then we would
-            expect for our estimator to produce a value at least as extreme as
-            what we have seen 100*(p-value)% of the time. The larger the
-            p-value, the more often we would expect our estimator to take on a
-            value at least as extreme as what we've seen; the smaller, the less
-            often."
-          )
+          h2("About me"),
+          h4("Hobbies"),
+          p("Sports: Athletisim has defiently never been something I excelled in,
+            but I have always tried to do sports to stay active. When I was younger,
+            I was on my local softball team for two years. I stoppped because I 
+            moved around too much, but I picked it back up for 2 years in middle
+            school. I was shortstop, second base, and tried pitching. In high 
+            school, I was on my high schools tennis team from sophomore to senior 
+            year."),
+          p("Travel: One of my goals in line is to travel as much as I can while 
+            I am still relatively young. I have not left the country (besdies Canada),
+            but I am hoping to go to Europe soon. As of now, I have been to/through
+            all the states on the east coast and some western states like Hawaii, 
+            California, Alaska, and a few more. This summer I am super excited 
+            because I will be going to Costa Rica by myself and I am suepr excited
+            for the growth oppurtunity and have a fist person experince in a different
+            culture."),
+          p("Extra Curriculars: In high shcool I was heavily involded in extra 
+            curricualrs. I was on my schools Unified Sports Teams (track/field and
+            bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
+            I joined a sorority, Special Olympics, and THON."),
+          h3('Home'),
+          p("Home: I have lived in various places. Until I was in second grade,
+            I lived in Loganville, GA. For third grade I lived in Gadsten, AL. 
+            Currently I reside in Bucks County, PA."),
+          p("Family: I have two older sisters. My eldest sisters name is Laura,
+            she is 27 and lives in Leesburg, VA with her fiance. My other sisters
+            name is Paige, she is 22 and is graduing from SJU in Philly this
+            semester."),
+          p("Pets: I have had various pets throughout my life including dogs, cats,
+            turtles, fish, and bearded dragons. Currently, I have two dogs named 
+            Ellie and Mariposa. Ellie is a black terrier mix and Mariposa is a white
+            Pekinese mix."),
         ),
-        #### Note: you must have at least one of the following pages. You might
-        #### have more than one type and/or more than one of the same type. This
-        #### will be up to you and the goals for your app.
-        #### Set up an Explore Page ----
+        #### Set up the Timeline page ----
         tabItem(
-          tabName = "explore",
+          tabName = "timeline",
           withMathJax(),
           h2("Explore the Concept"),
           p("This page should include something for the user to do, the more
@@ -165,38 +139,6 @@ ui <- list(
             is dedicated to."),
           p("Common elements include graphs, sliders, buttons, etc."),
           p("The following comes from the NHST Caveats App:"),
-        ),
-        #### Set up a Challenge Page ----
-        tabItem(
-          tabName = "challenge",
-          withMathJax(),
-          h2("Challenge Yourself"),
-          p("The general intent of a Challenge page is to have the user take
-            what they learned in an Exploration and apply that knowledge in new
-            contexts/situations. In essence, to have them challenge their
-            understanding by testing themselves."),
-          p("What this page looks like will be up to you. Something you might
-            consider is to re-create the tools of the Exploration page and then
-            a list of questions for the user to then answer.")
-        ),
-        #### Set up a Game Page ----
-        tabItem(
-          tabName = "game",
-          withMathJax(),
-          h2("Practice/Test Yourself with [Type of Game]"),
-          p("On this type of page, you'll set up a game for the user to play.
-            Game types include Tic-Tac-Toe, Matching, and a version Hangman to
-            name a few. If you have ideas for new game type, please let us know.")
-        ),
-        #### Set up a Wizard Page ----
-        tabItem(
-          tabName = "wizard",
-          withMathJax(),
-          h2("Wizard"),
-          p("This page will have a series of inputs and questions for the user to
-            answer/work through in order to have the app create something. These
-            types of Activity pages are currently rare as we try to avoid
-            creating 'calculators' in the BOAST project.")
         ),
         #### Set up the References Page ----
         tabItem(
