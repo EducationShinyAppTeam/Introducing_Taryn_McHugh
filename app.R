@@ -5,7 +5,7 @@ library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
 
-# Load additional dependencies and setup functions----
+# Load additional dependencies and setup functions
 # source("global.R")
 
 # Define UI for App ----
@@ -59,14 +59,14 @@ ui <- list(
             tags$li("See specific images that descirbe events that happened to me
                     in the Timeline Tab")
           ),
-          ##### Go Button--location will depend on your goals
+          ##### Go Button--location will depend on your goals----
           div(
             style = "text-align: center;",
             bsButton(
-              inputId = "go1",
-              label = "GO!",
+              inputId = "go",
+              label = "Background",
               size = "large",
-              icon = icon("bolt"),
+              icon = icon("book"),
               style = "default"
             )
           ),
@@ -90,12 +90,12 @@ ui <- list(
             div(class = "updated", "Last Update: 05/17/2023 by TM.")
           )
         ),
-        #### Set up background page----
+        #### Set up the Background Page ----
         tabItem(
           tabName = "background",
           withMathJax(),
           h2("About me"),
-          h4("Hobbies"),
+          h3("Hobbies"),
           p("Sports: Athletisim has defiently never been something I excelled in,
             but I have always tried to do sports to stay active. When I was younger,
             I was on my local softball team for two years. I stoppped because I 
@@ -115,7 +115,7 @@ ui <- list(
             curricualrs. I was on my schools Unified Sports Teams (track/field and
             bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
             I joined a sorority, Special Olympics, and THON."),
-          h3('Home'),
+          h4('Home'),
           p("Home: I have lived in various places. Until I was in second grade,
             I lived in Loganville, GA. For third grade I lived in Gadsten, AL. 
             Currently I reside in Bucks County, PA."),
@@ -127,8 +127,17 @@ ui <- list(
             turtles, fish, and bearded dragons. Currently, I have two dogs named 
             Ellie and Mariposa. Ellie is a black terrier mix and Mariposa is a white
             Pekinese mix."),
+          tags$figure(
+            align = 'center',
+            tags$img(
+              src = 'pets.png',
+              width = 600,
+              alt = 'Pie chart of how many of a species I have had and what species.'
+            ),
+            tags$figcaption('The number of each species I have had in total')
+          )
         ),
-        #### Set up the Timeline page ----
+        #### Set up an Timeline Page ----
         tabItem(
           tabName = "timeline",
           withMathJax(),
@@ -165,7 +174,7 @@ ui <- list(
 
 # Define server logic ----
 server <- function(input, output, session) {
-
+  
   ## Set up Info button ----
   observeEvent(
     eventExpr = input$info,
@@ -174,13 +183,24 @@ server <- function(input, output, session) {
         session = session,
         type = "info",
         title = "Information",
-        text = "This App Template will help you get started building your own app"
+        text = "Select the Background Tab to learn facts about me. Then, select 
+        the Timeline Tab to see pictures associated with the facts in the Background
+        Tab."
       )
     }
   )
-
-
 }
+  ## Overview to Background Button----
+  observeEvent(
+    eventExpr = input$go,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected - "background"
+      )
+    }
+  )
 
 # Boast App Call ----
 boastUtils::boastApp(ui = ui, server = server)
