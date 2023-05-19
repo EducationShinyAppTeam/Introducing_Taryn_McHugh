@@ -3,9 +3,10 @@ ShortName: Taryn's Intro
 Date: 2023-05-18
 Lifecycle: experimental
 Authors@R: c(
-    person(given = "Taryn", family = "McHugh", email = "tjm7063@psu.edu", role = c("aut", "cre"))
+    person(given = "Taryn", family = "McHugh", email = "tjm7063@psu.edu", role =
+    c("aut", "cre"))
   )
-Chapter: Sample Chapter
+Chapter: Introductions
 Description: This app is focused on getting to know a student
 LearningObjectives: c(
     "The student will learn information about Taryn McHugh"
@@ -14,5 +15,5 @@ DisplayMode: Normal
 URL: https://psu-eberly.shinyapps.io/Sample_App
 BugReports: https://github.com/EducationShinyAppTeam/Sample_App/issues
 License: CC-BY-NC-SA-4.0
-Tags: simulation
+Tags: introduction app
 Type: Shiny

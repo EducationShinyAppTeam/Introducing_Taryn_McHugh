@@ -9,6 +9,9 @@ library(ggplot2) # data visualization
 # Load additional dependencies and setup functions
 # source("global.R")
 
+## Load Dataset
+pets <- read.csv("pets.csv")
+
 # Define UI for App ----
 ui <- list(
   ## Create the app page ----
@@ -37,7 +40,7 @@ ui <- list(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
         menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Timeline", tabName = "timeline", icon = icon("wpexplorer")),
+        menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -58,7 +61,7 @@ ui <- list(
           tags$ol(
             tags$li("Read facts about me using the Prerequisites Tab"),
             tags$li("See specific images that descirbe events that happened to me
-                    in the Timeline Tab")
+                    in the Explore Tab")
           ),
           ##### Go Button--location will depend on your goals----
           div(
@@ -80,10 +83,11 @@ ui <- list(
             br(),
             "Cite this app as:",
             br(),
-            citeApp(),
+            p("McHugh, T. (2023). Introducing Taryn McHugh. [R Shiny app]. 
+              Available https://psu-eberly.shinyapps.io/Introducing_Taryn_McHugh"),
             br(),
             br(),
-            div(class = "updated", "Last Update: 05/17/2023 by TM.")
+            div(class = "updated", "Last Update: 05/19/2023 by T.M.")
           )
         ),
         #### Set up the Prerequisites Page ----
@@ -92,56 +96,51 @@ ui <- list(
           withMathJax(),
           h2("About me"),
           h3("Hobbies"),
-          wellPanel(
-            p("Sports: I have always tried to participate in sports to stay active,
-            I usually wasn't any good though. When I was younger, I was on my 
-            local softball team for two years, and I picked it back up for two 
-            years in middle school where I played second and shortstop. In high 
-            school, I was on my high schools tennis team from sophomore to senior 
-            year."),
-            p("Travel: One of my goals is to travel as much as I can while I am still 
-            relatively young. One of my dream destinations is Europe, potentially 
-            Italy or Greece. As of now, I have been to/through all the states on 
-            the east coast and some western states like Hawaii, California, Alaska, 
-            and a few more. This summer I am super excited because I will be 
-            going to Costa Rica by myself. I am super excited for the independency
-            and experiencing another culture."),
-            p("Extra Curriculars: In high shcool I was heavily involved in extra 
-            curriculars. I was on my schools Unified Sports Teams (track/field and
-            bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
-            I joined a sorority, Special Olympics, and THON."),
-          ),
-
+          p("Sports: I have always tried to participate in sports to stay active,
+          I usually wasn't any good though. When I was younger, I was on my 
+          local softball team for two years, and I picked it back up for two 
+          years in middle school where I played second and shortstop. In high 
+          school, I was on my high schools tennis team from sophomore to senior 
+          year."),
+          p("Travel: One of my goals is to travel as much as I can while I am still 
+          relatively young. One of my dream destinations is Europe, potentially 
+          Italy or Greece. As of now, I have been to/through all the states on 
+          the east coast and some western states like Hawaii, California, Alaska, 
+          and a few more. This summer I am super excited because I will be 
+          going to Costa Rica by myself. I am super excited for the independency
+          and experiencing another culture."),
+          p("Extra Curriculars: In high shcool I was heavily involved in extra 
+          curriculars. I was on my schools Unified Sports Teams (track/field and
+          bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
+          I joined a sorority, Special Olympics, and THON."),
           h4('Home'),
-          wellPanel(
-            p("Home: When I was younger I lived in the south for the mostpart.
-            Until I was in second grade, I lived in Loganville, GA. For third 
-            grade I lived in Gadsten, AL. Currently I reside in Bucks County, PA."),
-            p("Family: I have two older sisters. My eldest sisters name is Laura,
-            she is 27 and lives in Leesburg, VA with her fiance. My other sisters
-            name is Paige, she is 22 and is graduing from SJU in Philly this
-            semester."),
-            p("Pets: I have had various pets throughout my life including dogs, cats,
-            turtles, fish, and bearded dragons. Currently, I have two dogs named 
-            Ellie and Mariposa. Ellie is a black terrier mix and Mariposa is a white
-            Pekingese mix."),
-            plotOutput(
-              outputId = "numSpeciesPlot",
-              width = "100%",
-              height = "400px"
-            )
+          p("Home: When I was younger I lived in the south for the mostpart.
+          Until I was in second grade, I lived in Loganville, GA. For third 
+          grade I lived in Gadsten, AL. Currently I reside in Bucks County, PA."),
+          p("Family: I have two older sisters. My eldest sisters name is Laura,
+          she is 27 and lives in Leesburg, VA with her fiance. My other sisters
+          name is Paige, she is 22 and is graduing from SJU in Philly this
+          semester."),
+          p("Pets: I have had various pets throughout my life including dogs, cats,
+          turtles, fish, and bearded dragons. Currently, I have two dogs named 
+          Ellie and Mariposa. Ellie is a black terrier mix and Mariposa is a white
+          Pekingese mix."),
+          plotOutput(
+            outputId = "numSpeciesPlot",
+            width = "100%",
+            height = "400px"
           )
         ),
-        #### Set up an Timeline Page ----
+        #### Set up an Explore Page ----
         tabItem(
-          tabName = "timeline",
+          tabName = "explore",
           withMathJax(),
           h2("Visual Timeline"),
           p("Slide the bar to each age in my life to see images of key events in
             my life for that age."),
           fluidRow(
             column(
-              width = 6,
+              width = 12,
               sliderInput(
                 inputId = "age",
                 label = "Age",
@@ -159,13 +158,43 @@ ui <- list(
           tabName = "references",
           withMathJax(),
           h2("References"),
-          p("You'll need to fill in this page with all of the appropriate
-            references for your app."),
           p(
             class = "hangingindent",
             "Bailey, E. (2015). shinyBS: Twitter bootstrap components for shiny.
             (v0.61). [R package]. Available from
             https://CRAN.R-project.org/package=shinyBS"
+          ),
+          p(
+            class = "hangingindent",
+            "Carey, R. and Hatfield, N.J. (2023). boastUtils: BOAST utilities. 
+            (v0.1.11.2). [R Package]. Avaliable from 
+            https://github.com/EducationShinyappTeam/boastUtils"
+          ),
+          p(
+            class = "hangingindent",
+            "Chang, W. and Borges Ribeio (2021). shinydashboard: Create dashboards
+            with 'Shiny.' (v0.7.2). Avaliable from
+            https://CRAN.R-project.org/package=shinydashboard"
+          ),
+          p(
+            class = "hangingindent",
+            "Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, 
+            McPherson J, Dipert A, Borges B (2023). shiny: Web Application Framework 
+            for R. R package version 1.7.4.9002. Avaliable from 
+            https://shiny.rstudio.com/."
+            ),
+          p(
+            class = "hangingindent",
+            "Perrier, V., Meyer, F., Granjon, D. (2023) shinyWidgets: Custom Input
+            Widgets for Shiny. (v0.7.6). Avaliable from 
+            https://github.com/dreamRs/shinyWidgets"
+          ),
+          p(
+            class = "hangingindent",
+            "Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. 
+            Springer-Verlag New York. ISBN 978-3-319-24277-4. Avaliable from 
+            https://ggplot2.tidyverse.org."
+            
           ),
           br(),
           br(),
@@ -182,8 +211,8 @@ server <- function(input, output, session) {
   
   ## Species Plot Rendering
   output$numSpeciesPlot <-renderPlot({
-    ggplot(data = "pets.csv",
-           mapping = aes(x = "", y = Number, fill=Pet.Type)) +
+    ggplot(data = pets,
+           mapping = aes(x = "", y = Number, fill=Species)) +
       geom_bar(stat = "identity", width = 1) +
       coord_polar("y", start = 0) +
       geom_text(aes(label = paste0(Number)), position = position_stack(vjust=0.5)) +
@@ -194,12 +223,12 @@ server <- function(input, output, session) {
   })
   
   
-  ## Timeline Image ----
+  ## Explore Image ----
   output$event <- renderUI({
     if(input$age == "9"){
       list(      
-        img(height = 300,
-          width = 300,
+        img(height = 330,
+          width = 330,
           src = "age9.jpg",
           alt = "Image of a sunset in the neighborhood."),
       br(),
@@ -207,8 +236,8 @@ server <- function(input, output, session) {
         outside my house. "))
     } else if(input$age == "12"){
       list(
-      img(height = 240,
-          width = 330,
+      img(height = 250,
+          width = 350,
           src = "age12.jpg",
           alt = "Imagine of a wooden sign that says Welcome to Alaska and the Gateway
           to the Klondike."),
@@ -217,8 +246,8 @@ server <- function(input, output, session) {
         We went on a cruise to visit various locaitons in Alaska and Canada."))
     } else if(input$age == "15") {
       list(
-      img(height = 240,
-          width = 300, 
+      img(height = 300,
+          width = 340, 
           src = "age15.jpg",
           alt = "A collage of photos of Taryn when she was 15. It includes her 
           and her 2 frineds, her and she sister in a agraduation gown, and her 
@@ -231,8 +260,8 @@ server <- function(input, output, session) {
         at a match (lower right)."))
     } else {
       list(
-      img(height = 300,
-          width = 300, 
+      img(height = 350,
+          width = 330, 
           src = "age18.jpg",
           alt = "A collage of photos of Taryn when she was 18. There is an image 
           of her at her high school graudation, her posing for her first day of 
@@ -253,9 +282,7 @@ server <- function(input, output, session) {
         session = session,
         type = "info",
         title = "Information",
-        text = "Select the Prerequisites Tab to learn facts about me. Then, select 
-        the Timeline Tab to see pictures associated with the facts in the Prerequisites
-        Tab."
+        text = "This app will help you learn more about Taryn McHugh"
       )
     }
   )
