@@ -87,7 +87,7 @@ ui <- list(
               Available https://psu-eberly.shinyapps.io/Introducing_Taryn_McHugh"),
             br(),
             br(),
-            div(class = "updated", "Last Update: 05/19/2023 by T.M.")
+            div(class = "updated", "Last Update: 05/22/2023 by T.M.")
           )
         ),
         #### Set up the Prerequisites Page ----
@@ -128,7 +128,7 @@ ui <- list(
           plotOutput(
             outputId = "numSpeciesPlot",
             width = "100%",
-            height = "400px"
+            height = "400px",
           )
         ),
         #### Set up an Explore Page ----
@@ -141,14 +141,16 @@ ui <- list(
           fluidRow(
             column(
               width = 12,
-              sliderInput(
-                inputId = "age",
-                label = "Age",
-                min = 9,
-                max = 18,
-                step = 3,
-                value = 3
-              ),
+              wellPanel(
+                sliderInput(
+                  inputId = "age",
+                  label = "Age",
+                  min = 9,
+                  max = 18,
+                  step = 3,
+                  value = 3
+                  )
+                ),
               uiOutput('event'),
             )
           )
@@ -227,50 +229,93 @@ server <- function(input, output, session) {
   output$event <- renderUI({
     if(input$age == "9"){
       list(      
-        img(height = 330,
-          width = 330,
-          src = "age9.jpg",
-          alt = "Image of a sunset in the neighborhood."),
-      br(),
-      p("When I was 9 I moved to Pennslyvania. This is a picture of a sunset 
-        outside my house. "))
+        fluidRow(
+          column(
+            width = 4,
+            offset = 1,
+            img(height = 340,
+              width = 330,
+              src = "age9.jpg",
+              alt = "Image of a sunset in the neighborhood.")
+              ),
+          column(
+            width = 6,
+            offset = 1,
+            p("When I was 9, I moved to Pennslyvania. This is a picture of a sunset 
+        outside my house. ")
+          )
+        )
+      )
+
     } else if(input$age == "12"){
       list(
-      img(height = 250,
-          width = 350,
-          src = "age12.jpg",
-          alt = "Imagine of a wooden sign that says Welcome to Alaska and the Gateway
-          to the Klondike."),
-      br(),
-      p("When I was 12 was when I travelled across the country for the first time. 
-        We went on a cruise to visit various locaitons in Alaska and Canada."))
+        fluidRow(
+          column(
+            width = 4,
+            offset = 0,
+            img(height = 250,
+              width = 350,
+              src = "age12.jpg",
+              alt = "Imagine of a wooden sign that says Welcome to Alaska and the Gateway
+          to the Klondike.")
+          ),
+          column(
+            width = 7,
+            offset = 1,
+            p("When I was 12 was when I travelled across the country for the first time. 
+        We went on a cruise to visit various locaitons in Alaska and Canada.")
+           )
+        )
+     )
+    
     } else if(input$age == "15") {
       list(
-      img(height = 300,
-          width = 340, 
-          src = "age15.jpg",
-          alt = "A collage of photos of Taryn when she was 15. It includes her 
+        fluidRow(
+          column(
+            width = 3,
+            offset = 1,
+            img(height = 300,
+                width = 340, 
+                src = "age15.jpg",
+                alt = "A collage of photos of Taryn when she was 15. It includes her 
           and her 2 frineds, her and she sister in a agraduation gown, and her 
-          and her freinds in tennis uniforms."),
-      br(),
-      p("Here are some pictures from when I was 15. The left image is a picture 
-        of me and my friends when we went to Ocean City, NJ together. My sister 
+          and her freinds in tennis uniforms.")
+          ),
+          column(
+            width = 7,
+            offset = 1,
+            p("Here are some pictures from when I was 15. The left image is a picture 
+        of my friends and I when we went to Ocean City, NJ together. My sister 
         also graduated high school (top right). Sophomore year was when I was 15,
         so that I when I joined the tennis team. It is a picture of me and my friends
-        at a match (lower right)."))
+        at a match (lower right).")
+          )
+       )
+    )
+        
     } else {
       list(
-      img(height = 350,
-          width = 330, 
-          src = "age18.jpg",
-          alt = "A collage of photos of Taryn when she was 18. There is an image 
+        fluidRow(
+          column(
+            width = 3,
+            offset = 1,
+            img(height = 350,
+                width = 355, 
+                src = "age18.jpg",
+                alt = "A collage of photos of Taryn when she was 18. There is an image 
           of her at her high school graudation, her posing for her first day of 
-          college, and a botanical garden from when she went to Hawaii."),
-      br(),
-      p("A lot of exciting things happened when I was 18. I graduated high school
+          college, and a botanical garden from when she went to Hawaii.")
+          ),
+          column(
+            width = 7,
+            offset = 1,
+            p("A lot of exciting things happened when I was 18. I graduated high school
         (left). Over the summer, I went to Hawaii for the right time (upper right).
-        Then started my first day of college at PSU (bottom right)."))
-    }
+        Then started my first day of college at PSU (bottom right).")
+          )
+        )
+      )
+          }
   })
   
 

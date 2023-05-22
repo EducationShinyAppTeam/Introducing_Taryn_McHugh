@@ -1,19 +1,19 @@
 Title: Introducing Taryn McHugh 
 ShortName: Taryn's Intro
-Date: 2023-05-18
+Date: 2023-05-22
 Lifecycle: experimental
 Authors@R: c(
     person(given = "Taryn", family = "McHugh", email = "tjm7063@psu.edu", role =
     c("aut", "cre"))
   )
 Chapter: Introductions
-Description: This app is focused on getting to know a student
+Description: This app is focused on getting to know Taryn McHugh.
 LearningObjectives: c(
     "The student will learn information about Taryn McHugh"
   )
 DisplayMode: Normal
-URL: https://psu-eberly.shinyapps.io/Sample_App
-BugReports: https://github.com/EducationShinyAppTeam/Sample_App/issues
+URL: https://psu-eberly.shinyapps.io/Introducing_Taryn_McHugh
+BugReports: https://github.com/EducationShinyAppTeam/Introducing_Taryn_McHugh/issues
 License: CC-BY-NC-SA-4.0
 Tags: introduction app
 Type: Shiny
