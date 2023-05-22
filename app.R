@@ -128,8 +128,7 @@ ui <- list(
           plotOutput(
             outputId = "numSpeciesPlot",
             width = "100%",
-            height = "400px",
-          )
+            )
         ),
         #### Set up an Explore Page ----
         tabItem(
@@ -183,13 +182,13 @@ ui <- list(
             "Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, 
             McPherson J, Dipert A, Borges B (2023). shiny: Web Application Framework 
             for R. R package version 1.7.4.9002. Avaliable from 
-            https://shiny.rstudio.com/."
+            https://CRAN.R-project.org/package=shiny"
             ),
           p(
             class = "hangingindent",
             "Perrier, V., Meyer, F., Granjon, D. (2023) shinyWidgets: Custom Input
             Widgets for Shiny. (v0.7.6). Avaliable from 
-            https://github.com/dreamRs/shinyWidgets"
+            https://cran.r-project.org/web/packages/shinyWidgets/index.html"
           ),
           p(
             class = "hangingindent",
@@ -214,16 +213,22 @@ server <- function(input, output, session) {
   ## Species Plot Rendering
   output$numSpeciesPlot <-renderPlot({
     ggplot(data = pets,
-           mapping = aes(x = "", y = Number, fill=Species)) +
-      geom_bar(stat = "identity", width = 1) +
+           mapping = aes(x = "", 
+                         y = Number, 
+                         fill=Species)) +
+      geom_bar(stat = "identity", 
+               width = 1) +
       coord_polar("y", start = 0) +
-      geom_text(aes(label = paste0(Number)), position = position_stack(vjust=0.5)) +
-      theme(axis.text = element_blank()) + 
-      labs(x = NULL,
+      geom_text(size = 7,
+                aes(label = Number), 
+                position = position_stack(vjust = 0.5)) +
+      theme(axis.text = element_blank(), 
+            legend.text = element_text(size = 17),
+            legend.title = element_text(size = 17)) + 
+      labs(x = NULL, 
            y = NULL,
            fill = 'Species')
-  })
-  
+    })
   
   ## Explore Image ----
   output$event <- renderUI({
@@ -233,8 +238,8 @@ server <- function(input, output, session) {
           column(
             width = 4,
             offset = 1,
-            img(height = 340,
-              width = 330,
+            img(height = "100%",
+                width = "100%",
               src = "age9.jpg",
               alt = "Image of a sunset in the neighborhood.")
               ),
@@ -253,17 +258,18 @@ server <- function(input, output, session) {
           column(
             width = 4,
             offset = 0,
-            img(height = 250,
-              width = 350,
+            img(height = "100%",
+                width = "100%",
               src = "age12.jpg",
-              alt = "Imagine of a wooden sign that says Welcome to Alaska and the Gateway
-          to the Klondike.")
+              alt = "Imagine of a wooden sign that says Welcome to Alaska and 
+              the Gateway to the Klondike.")
           ),
           column(
             width = 7,
             offset = 1,
-            p("When I was 12 was when I travelled across the country for the first time. 
-        We went on a cruise to visit various locaitons in Alaska and Canada.")
+            p("When I was 12 was when I travelled across the country for the 
+              first time. We went on a cruise to visit various locaitons in Alaska 
+              and Canada.")
            )
         )
      )
@@ -274,8 +280,8 @@ server <- function(input, output, session) {
           column(
             width = 3,
             offset = 1,
-            img(height = 300,
-                width = 340, 
+            img(height = "100%",
+                width = "100%",
                 src = "age15.jpg",
                 alt = "A collage of photos of Taryn when she was 15. It includes her 
           and her 2 frineds, her and she sister in a agraduation gown, and her 
@@ -299,19 +305,20 @@ server <- function(input, output, session) {
           column(
             width = 3,
             offset = 1,
-            img(height = 350,
-                width = 355, 
+            img(height = "100%",
+                width = "100%",
                 src = "age18.jpg",
-                alt = "A collage of photos of Taryn when she was 18. There is an image 
-          of her at her high school graudation, her posing for her first day of 
-          college, and a botanical garden from when she went to Hawaii.")
+                alt = "A collage of photos of Taryn when she was 18. There is an 
+                image of her at her high school graudation, her posing for her 
+                first day of college, and a botanical garden from when she went 
+                to Hawaii.")
           ),
           column(
             width = 7,
             offset = 1,
-            p("A lot of exciting things happened when I was 18. I graduated high school
-        (left). Over the summer, I went to Hawaii for the right time (upper right).
-        Then started my first day of college at PSU (bottom right).")
+            p("A lot of exciting things happened when I was 18. I graduated high 
+              school (left). Over the summer, I went to Hawaii for the right time 
+              (upper right). Then started my first day of college at PSU (bottom right).")
           )
         )
       )
