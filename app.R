@@ -87,7 +87,7 @@ ui <- list(
               Available https://psu-eberly.shinyapps.io/Introducing_Taryn_McHugh"),
             br(),
             br(),
-            div(class = "updated", "Last Update: 05/22/2023 by T.M.")
+            div(class = "updated", "Last Update: 05/26/2023 by T.M.")
           )
         ),
         #### Set up the Prerequisites Page ----
@@ -95,8 +95,13 @@ ui <- list(
           tabName = "prerequisites",
           withMathJax(),
           h2("About me"),
-          h3("Hobbies"),
-          p("Sports: I have always tried to participate in sports to stay active,
+          box(
+            title = strong("Hobbies"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = FALSE,
+            width = "100%",
+            p("Sports: I have always tried to participate in sports to stay active,
           I usually wasn't any good though. When I was younger, I was on my 
           local softball team for two years, and I picked it back up for two 
           years in middle school where I played second and shortstop. In high 
@@ -113,7 +118,14 @@ ui <- list(
           curriculars. I was on my schools Unified Sports Teams (track/field and
           bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
           I joined a sorority, Special Olympics, and THON."),
-          h4('Home'),
+          ),
+          
+          box(
+            title = strong("Home"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = FALSE,
+            width = "100%",
           p("Home: When I was younger I lived in the south for the mostpart.
           Until I was in second grade, I lived in Loganville, GA. For third 
           grade I lived in Gadsten, AL. Currently I reside in Bucks County, PA."),
@@ -129,6 +141,7 @@ ui <- list(
             outputId = "numSpeciesPlot",
             width = "100%",
             )
+          ),
         ),
         #### Set up an Explore Page ----
         tabItem(
@@ -228,7 +241,9 @@ server <- function(input, output, session) {
       labs(x = NULL, 
            y = NULL,
            fill = 'Species')
-    })
+      },
+    alt = "Pie chart of the amount of pets I have had by species."
+    )
   
   ## Explore Image ----
   output$event <- renderUI({
