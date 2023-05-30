@@ -4,23 +4,26 @@ library(shinydashboard)
 library(shinyBS)
 library(shinyWidgets)
 library(boastUtils)
+library(ggplot2) 
 
 # Load additional dependencies and setup functions
 # source("global.R")
 
+## Datasets ----
+pets <- read.csv("pets.csv")
+
 # Define UI for App ----
 ui <- list(
-  ## Create the app page ----
+  ## App page ----
   dashboardPage(
     skin = "blue",
-    ### Create the app header ----
     dashboardHeader(
-      title = "App Template", # You may use a shortened form of the title here
+      title = "Introducing Taryn McHugh",
       titleWidth = 250,
       tags$li(class = "dropdown", actionLink("info", icon("info"))),
       tags$li(
         class = "dropdown",
-        boastUtils::surveyLink(name = "App_Template")
+        boastUtils::surveyLink(name = "Introducing_Taryn_McHugh")
       ),
       tags$li(
         class = "dropdown",
@@ -29,18 +32,14 @@ ui <- list(
         )
       )
     ),
-    ### Create the sidebar/left navigation menu ----
+    ### Navigation menu ----
     dashboardSidebar(
       width = 250,
       sidebarMenu(
         id = "pages",
         menuItem("Overview", tabName = "overview", icon = icon("gauge-high")),
         menuItem("Prerequisites", tabName = "prerequisites", icon = icon("book")),
-        menuItem("Example", tabName = "example", icon = icon("book-open-reader")),
         menuItem("Explore", tabName = "explore", icon = icon("wpexplorer")),
-        menuItem("Challenge", tabName = "challenge", icon = icon("gears")),
-        menuItem("Game", tabName = "game", icon = icon("gamepad")),
-        menuItem("Wizard", tabName = "wizard", icon = icon("hat-wizard")),
         menuItem("References", tabName = "references", icon = icon("leanpub"))
       ),
       tags$div(
@@ -51,44 +50,33 @@ ui <- list(
     ### Create the content ----
     dashboardBody(
       tabItems(
-        #### Set up the Overview Page ----
+        #### Overview Page ----
         tabItem(
           tabName = "overview",
           withMathJax(),
-          h1("Sample Application for BOAST Apps"), # This should be the full name.
-          p("This is a sample Shiny application for BOAST. Remember, this page
-            will act like the front page (home page) of your app. Thus you will
-            want to have this page catch attention and describe (in general terms)
-            what the user can do in the rest of the app."),
+          h1("Introduction to Taryn McHugh"), 
+          p("Use this application to get to  know more about Taryn McHugh!"),
           h2("Instructions"),
-          p("This information will change depending on what you want to do."),
           tags$ol(
-            tags$li("Review any prerequiste ideas using the Prerequistes tab."),
-            tags$li("Explore the Exploration Tab."),
-            tags$li("Challenge yourself."),
-            tags$li("Play the game to test how far you've come.")
+            tags$li("Read facts about me using the Prerequisites Tab"),
+            tags$li("See specific images that descirbe events that happened to me
+                    in the Explore Tab")
           ),
-          ##### Go Button--location will depend on your goals
+          ##### Overview to Prereq Button
           div(
             style = "text-align: center;",
             bsButton(
-              inputId = "go1",
-              label = "GO!",
+              inputId = "overviewPrereq",
+              label = "Prerequisites",
               size = "large",
-              icon = icon("bolt"),
-              style = "default"
+              icon = icon("book")
             )
           ),
-          ##### Create two lines of space
           br(),
           br(),
           h2("Acknowledgements"),
           p(
-            "This version of the app was developed and coded by Neil J.
-            Hatfield  and Robert P. Carey, III.",
-            br(),
-            "We would like to extend a special thanks to the Shiny Program
-            Students.",
+            "This version of the app was developed and coded by Taryn McHugh.",
             br(),
             br(),
             "Cite this app as:",
@@ -96,120 +84,122 @@ ui <- list(
             citeApp(),
             br(),
             br(),
-            div(class = "updated", "Last Update: 11/8/2022 by NJH.")
+            div(class = "updated", "Last Update: 05/30/2023 by T.M.")
           )
         ),
-        #### Set up the Prerequisites Page ----
+        #### Prerequisites Page ----
         tabItem(
           tabName = "prerequisites",
           withMathJax(),
-          h2("Prerequisites"),
-          p("In order to get the most out of this app, please review the
-            following:"),
-          tags$ul(
-            tags$li("Pre-req 1--Technical/Conceptual Prerequisites are ideas that
-                    users need to have in order to engage with your app fully."),
-            tags$li("Pre-req 2--Contextual Prerequisites refer to any information
-                    about a context in your app that will enrich a user's
-                    understandings."),
-            tags$li("Pre-req 3"),
-            tags$li("Pre-req 4")
-          ),
-          p("Notice the use of an unordered list; users can move through the
-            list any way they wish."),
+          h2("About me"),
           box(
-            title = strong("Null Hypothesis Significance Tests (NHSTs)"),
-            status = "primary",
-            collapsible = TRUE,
-            collapsed = TRUE,
-            width = '100%',
-            "In the Confirmatory Data Analysis tradition, null hypothesis
-            significance tests serve as a critical tool to confirm that a
-            particular theoretical model describes our data and to make a
-            generalization from our sample to the broader population
-            (i.e., make an inference). The null hypothesis often reflects the
-            simpler of two models (e.g., 'no statistical difference',
-            'there is an additive difference of 1', etc.) that we will use to
-            build a sampling distribution for our chosen estimator. These
-            methods let us test whether our sample data are consistent with this
-            simple model (null hypothesis)."
-          ),
-          box(
-            title = strong(tags$em("p"), "-values"),
+            title = strong("Hobbies"),
             status = "primary",
             collapsible = TRUE,
             collapsed = FALSE,
-            width = '100%',
-            "The probability that our selected estimator takes on a value at
-            least as extreme as what we observed given our null hypothesis. If
-            we were to carry out our study infinitely many times and the null
-            hypothesis accurately modeled what we're studying, then we would
-            expect for our estimator to produce a value at least as extreme as
-            what we have seen 100*(p-value)% of the time. The larger the
-            p-value, the more often we would expect our estimator to take on a
-            value at least as extreme as what we've seen; the smaller, the less
-            often."
+            width = "100%",
+            p("I have always tried to participate in sports to stay active,
+          I usually wasn't any good though. When I was younger, I was on my 
+          local softball team for two years, and I picked it back up for two 
+          years in middle school where I played second and shortstop. In high 
+          school, I was on my high schools tennis team from sophomore to senior 
+          year."),
+          p("One of my goals is to travel as much as I can while I am still 
+          relatively young. One of my dream destinations is Europe, potentially 
+          Italy or Greece. As of now, I have been to/through all the states on 
+          the east coast and some western states like Hawaii, California, Alaska, 
+          and a few more. This summer I am super excited because I will be 
+          going to Costa Rica by myself. I am super excited for the independency
+          and experiencing another culture."),
+          p("In high shcool I was heavily involved in extra 
+          curriculars. I was on my schools Unified Sports Teams (track/field and
+          bocce), Debate Team, Tennis Team, Exec Council, and Mini THON. In college, 
+          I joined a sorority, Special Olympics, and THON.")
+          ),
+          box(
+            title = strong("Home"),
+            status = "primary",
+            collapsible = TRUE,
+            collapsed = FALSE,
+            width = "100%",
+          p("When I was younger I lived in the south for the mostpart.
+          Until I was in second grade, I lived in Loganville, GA. For third 
+          grade I lived in Gadsten, AL. Currently I reside in Bucks County, PA."),
+          p("I have two older sisters. My eldest sisters name is Laura,
+          she is 27 and lives in Leesburg, VA with her fiance. My other sisters
+          name is Paige, she is 22 and is graduing from SJU in Philly this
+          semester."),
+          p("I have had various pets throughout my life including dogs, cats,
+          turtles, fish, and bearded dragons. Currently, I have two dogs named 
+          Ellie and Mariposa. Ellie is a black terrier mix and Mariposa is a white
+          Pekingese mix. Below is a pie chart of the types of pets I have had and
+          how many."),
+          plotOutput(
+            outputId = "numTypePlot",
+            width = "100%"
+            )
           )
         ),
-        #### Note: you must have at least one of the following pages. You might
-        #### have more than one type and/or more than one of the same type. This
-        #### will be up to you and the goals for your app.
-        #### Set up an Explore Page ----
+        ####  Explore Page ----
         tabItem(
           tabName = "explore",
           withMathJax(),
-          h2("Explore the Concept"),
-          p("This page should include something for the user to do, the more
-            active and engaging, the better. The purpose of this page is to help
-            the user build a productive understanding of the concept your app
-            is dedicated to."),
-          p("Common elements include graphs, sliders, buttons, etc."),
-          p("The following comes from the NHST Caveats App:"),
+          h2("Visual Timeline"),
+          p("Slide the bar to each age in my life to see images of key events in
+            my life for that age."),
+          wellPanel(
+            sliderInput(
+              inputId = "age",
+              label = "Age",
+              min = 9,
+              max = 18,
+              step = 3,
+              value = 9
+            )
+          ),
+          uiOutput('event')
         ),
-        #### Set up a Challenge Page ----
-        tabItem(
-          tabName = "challenge",
-          withMathJax(),
-          h2("Challenge Yourself"),
-          p("The general intent of a Challenge page is to have the user take
-            what they learned in an Exploration and apply that knowledge in new
-            contexts/situations. In essence, to have them challenge their
-            understanding by testing themselves."),
-          p("What this page looks like will be up to you. Something you might
-            consider is to re-create the tools of the Exploration page and then
-            a list of questions for the user to then answer.")
-        ),
-        #### Set up a Game Page ----
-        tabItem(
-          tabName = "game",
-          withMathJax(),
-          h2("Practice/Test Yourself with [Type of Game]"),
-          p("On this type of page, you'll set up a game for the user to play.
-            Game types include Tic-Tac-Toe, Matching, and a version Hangman to
-            name a few. If you have ideas for new game type, please let us know.")
-        ),
-        #### Set up a Wizard Page ----
-        tabItem(
-          tabName = "wizard",
-          withMathJax(),
-          h2("Wizard"),
-          p("This page will have a series of inputs and questions for the user to
-            answer/work through in order to have the app create something. These
-            types of Activity pages are currently rare as we try to avoid
-            creating 'calculators' in the BOAST project.")
-        ),
-        #### Set up the References Page ----
+        #### References Page ----
         tabItem(
           tabName = "references",
           withMathJax(),
           h2("References"),
-          p("You'll need to fill in this page with all of the appropriate
-            references for your app."),
           p(
             class = "hangingindent",
             "Bailey, E. (2015). shinyBS: Twitter bootstrap components for shiny.
             (v0.61). [R package]. Available from
             https://CRAN.R-project.org/package=shinyBS"
+          ),
+          p(
+            class = "hangingindent",
+            "Carey, R. and Hatfield, N.J. (2023). boastUtils: BOAST utilities. 
+            (v0.1.11.2). [R Package]. Avaliable from 
+            https://github.com/EducationShinyappTeam/boastUtils"
+          ),
+          p(
+            class = "hangingindent",
+            "Chang, W. and Borges Ribeio (2021). shinydashboard: Create dashboards
+            with 'Shiny.' (v0.7.2). Avaliable from
+            https://CRAN.R-project.org/package=shinydashboard"
+          ),
+          p(
+            class = "hangingindent",
+            "Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, 
+            McPherson J, Dipert A, Borges B (2023). shiny: Web Application Framework 
+            for R. R package version 1.7.4.9002. Avaliable from 
+            https://CRAN.R-project.org/package=shiny"
+            ),
+          p(
+            class = "hangingindent",
+            "Perrier, V., Meyer, F., Granjon, D. (2023) shinyWidgets: Custom Input
+            Widgets for Shiny. (v0.7.6). Avaliable from 
+            https://cran.r-project.org/web/packages/shinyWidgets/index.html"
+          ),
+          p(
+            class = "hangingindent",
+            "Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. 
+            Springer-Verlag New York. ISBN 978-3-319-24277-4. Avaliable from 
+            https://ggplot2.tidyverse.org."
           ),
           br(),
           br(),
@@ -223,7 +213,91 @@ ui <- list(
 
 # Define server logic ----
 server <- function(input, output, session) {
-
+  ## Pet Plot Rendering ----
+  output$numTypePlot <- renderPlot({
+    ggplot(
+      data = pets,
+      mapping = aes(x = "", y = Number, fill = Type)
+    ) +
+      geom_bar(stat = "identity", width = 1) +
+      coord_polar("y", start = 0) +
+      geom_text(
+        size = 7,
+        aes(label = Number), 
+        position = position_stack(vjust = 0.5)
+      ) +
+      theme(
+        axis.text = element_blank(), 
+        legend.text = element_text(size = 17),
+        legend.title = element_text(size = 17)
+      ) + 
+      labs(
+        x = NULL, 
+        y = NULL,
+        fill = 'Type',
+        title = "Type of Pets by Number")
+  },
+  alt = "Pie chart of the amount of pets I have had by type. 6 dogs, cat, 4 fish,
+  3 reptiles/"
+  )
+  
+  ## Explore Image ----
+  observeEvent(
+    eventExpr = input$age,
+    handlerExpr = {
+      if (input$age == "9") {
+        imgSrc <- "age9.jpg"
+        imgAlt <- "Sunset in a neighborhood"
+        paraText <- "When I was 9, I moved to Pennslyvania. This is a picture of 
+        a sunset outside my house. "
+      } else if (input$age == "12") {
+        imgSrc <- "age12.jpg"
+        imgAlt <- "Wooden sign that says, 'Welcome to Alaska and the Gateway to 
+        the Klondike.'"
+        paraText <- "When I was 12 was when I travelled across the country for the 
+              first time. We went on a cruise to visit various locaitons in Alaska 
+              and Canada."
+      } else if (input$age == "15") {
+        imgSrc <- "age15.jpg"
+        imgAlt <- "A collage of photos of Taryn. Her and her friends posing, 
+                ,her and her sister in a graduation gown, and her and her friends 
+                in tennis uniforms."
+        paraText <- "Here are some pictures from when I was 15. The left image is 
+        a picture of my friends and I when we went to Ocean City, NJ together.
+        My sister also graduated high school (top right). Sophomore year was when
+        I was 15, so that I when I joined the tennis team. It is a picture of me
+        and my friends at a match (lower right)."
+      } else {
+        imgSrc <- "age18.jpg"
+        imgAlt <- "A collage of photos of Taryn. Her high school graduation, her 
+                posing for her first day of college, and a botanical garden from 
+                Hawaii."
+        paraText <- "A lot of exciting things happened when I was 18. I graduated high 
+              school (left). Over the summer, I went to Hawaii for the right time 
+              (upper right). Then started my first day of college at PSU (bottom right)."
+      }
+      output$event <- renderUI({
+        list(
+          fluidRow(
+            column(
+              width = 3,
+              offset = 1,
+              img(
+                width = "100%",
+                src = imgSrc,
+                alt = imgAlt
+              )
+            ),
+            column(
+              width = 7,
+              offset = 1,
+              p(paraText)
+            )
+          )
+        )
+      })
+    }
+  )
   ## Set up Info button ----
   observeEvent(
     eventExpr = input$info,
@@ -232,12 +306,22 @@ server <- function(input, output, session) {
         session = session,
         type = "info",
         title = "Information",
-        text = "This App Template will help you get started building your own app"
+        text = "This app will help you learn more about Taryn McHugh"
       )
     }
   )
-
-
+  
+  ## Overview to  Button----
+  observeEvent(
+    eventExpr = input$overviewPrereq,
+    handlerExpr = {
+      updateTabItems(
+        session = session,
+        inputId = "pages",
+        selected = "prerequisites"
+      )
+    }
+  )
 }
 
 # Boast App Call ----

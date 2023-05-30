@@ -1,5 +1,8 @@
 # Things Needed for This Version
-1.
-2.
+1. Add references
+2. Fix acknowledgements 
+3. Work on descirptions page -- DONE 
+4. Figure out why ggplot is not working, I think it is a file issue. 
 
 # Ideas for Future Development
+For the timeline page, its bland, maybe make it larger or less empty. 
