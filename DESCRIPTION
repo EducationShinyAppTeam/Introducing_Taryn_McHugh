@@ -3,8 +3,7 @@ ShortName: Taryn's Intro
 Date: 2023-05-22
 Lifecycle: experimental
 Authors@R: c(
-    person(given = "Taryn", family = "McHugh", email = "tjm7063@psu.edu", role =
-    c("aut", "cre"))
+    person(given = "Taryn", family = "McHugh", email = "tjm7063@psu.edu", role = c("aut", "cre"))
   )
 Chapter: Introductions
 Description: This app is focused on getting to know Taryn McHugh.
