@@ -237,7 +237,8 @@ server <- function(input, output, session) {
         fill = 'Type',
         title = "Type of Pets by Number")
   },
-  alt = "Pie chart of the amount of pets I have had by type."
+  alt = "Pie chart of the amount of pets I have had by type. 6 dogs, cat, 4 fish,
+  3 reptiles/"
   )
   
   ## Explore Image ----
